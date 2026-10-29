@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, MapPin, Phone, Clock, Plus } from "lucide-react";
+import { ArrowUp, ArrowUpRight, MapPin, Phone, Clock, Plus } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import HeroCanvas from "@/components/HeroCanvas";
@@ -75,6 +75,8 @@ function WaButton({ label = "Konsultasi via WhatsApp", dark = true }: { label?: 
     </a>
   );
 }
+
+const FOOTER_SERVICES = ["Permak", "Jasa Jahit", "Payet", "Sewa Kebaya"];
 
 export default function Home() {
   return (
@@ -253,29 +255,65 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-stone-950 text-stone-300 border-t border-stone-800 py-14 md:py-16">
-        <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-12">
-          <div className="md:col-span-5 space-y-4">
-            <p className="font-serif text-2xl text-white tracking-[0.3em] uppercase">Fides</p>
-            <p className="leading-relaxed max-w-sm text-sm text-stone-400">Atelier jahit bespoke di Lamongan sejak 1996.</p>
-            <SocialLinks className="pt-2" />
+      <footer className="relative bg-stone-950 text-stone-300 overflow-hidden">
+        <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
+        <div className="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-10">
+          <div className="flex flex-col items-center text-center">
+            <Image src="/images/logo-full.png" alt="Fides Tailor" width={140} height={147} className="w-28 md:w-36 h-auto" />
+            <p className="mt-8 font-serif text-2xl md:text-4xl font-light text-stone-100 leading-snug max-w-xl">
+              Your style, <span className="italic text-gold-300">our hands.</span>
+            </p>
+            <p className="mt-5 max-w-lg text-sm md:text-base text-stone-400 leading-relaxed">
+              Gaya adalah milik Anda — kami yang mewujudkannya. Dari permak hingga busana baru, setiap jahitan dikerjakan tangan terampil atelier kami di Lamongan sejak 1996.
+            </p>
+            <SocialLinks className="mt-8" />
           </div>
-          <nav aria-label="Navigasi footer" className="md:col-span-3">
-            <ul className="space-y-3 text-sm">
-              {NAV_LINKS.map((link) => (
-                <li key={link.id}>
-                  <a href={`#${link.id}`} className="hover:text-white transition-colors">{link.label}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <address className="md:col-span-4 not-italic space-y-3 text-sm">
-            <p className="flex gap-3"><MapPin className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">Jl. Pahlawan RT 01/RW 07 No. 3, Kalianyar, Lamongan</a></p>
-            <p className="flex gap-3"><Phone className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={waLink()} target="_blank" rel="noopener noreferrer" className="hover:text-white">{WA_DISPLAY}</a></p>
-            <p className="flex gap-3"><Clock className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" />Senin–Sabtu, 08.00–17.00 WIB</p>
-          </address>
+
+          <div className="mt-14 md:mt-16 pt-12 border-t border-stone-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left">
+            <div>
+              <h2 className="text-[11px] uppercase tracking-[0.3em] text-gold-400 font-semibold">Layanan</h2>
+              <ul className="mt-5 flex flex-wrap justify-center sm:justify-start sm:flex-col gap-x-6 gap-y-3 text-sm">
+                {FOOTER_SERVICES.map((service) => (
+                  <li key={service}>{service}</li>
+                ))}
+              </ul>
+            </div>
+
+            <nav aria-label="Navigasi footer">
+              <h2 className="text-[11px] uppercase tracking-[0.3em] text-gold-400 font-semibold">Jelajahi</h2>
+              <ul className="mt-5 flex flex-wrap justify-center sm:justify-start sm:flex-col gap-x-6 gap-y-3 text-sm">
+                {NAV_LINKS.map((link) => (
+                  <li key={link.id}>
+                    <a href={`#${link.id}`} className="luxury-underline hover:text-white transition-colors">{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <address className="not-italic">
+              <h2 className="text-[11px] uppercase tracking-[0.3em] text-gold-400 font-semibold">Atelier</h2>
+              <div className="mt-5 space-y-3 text-sm leading-relaxed">
+                <p className="flex justify-center sm:justify-start gap-3"><MapPin className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Jl. Pahlawan RT 01/RW 07 No. 3, Kalianyar, Lamongan</a></p>
+                <p className="flex justify-center sm:justify-start gap-3"><Phone className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={waLink()} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{WA_DISPLAY}</a></p>
+              </div>
+            </address>
+
+            <div>
+              <h2 className="text-[11px] uppercase tracking-[0.3em] text-gold-400 font-semibold">Jam Buka</h2>
+              <div className="mt-5 space-y-3 text-sm">
+                <p className="flex justify-center sm:justify-start gap-3"><Clock className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" />Senin–Sabtu, 08.00–17.00 WIB</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-14 pt-8 border-t border-stone-800 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 text-xs text-stone-400">
+            <p>© {new Date().getFullYear()} Fides Tailor · Penjahit Bespoke Lamongan sejak 1996</p>
+            <a href="#home" className="group inline-flex items-center gap-2 uppercase tracking-[0.25em] hover:text-gold-300 transition-colors">
+              Kembali ke atas
+              <ArrowUp className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+            </a>
+          </div>
         </div>
-        <p className="mt-14 text-xs text-stone-500 text-center">© {new Date().getFullYear()} Fides Tailor</p>
       </footer>
     </div>
   );
