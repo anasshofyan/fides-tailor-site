@@ -17,13 +17,13 @@ import { WA_DISPLAY, waLink } from "@/lib/contact";
 const SERVICES = [
   { num: "01", title: "Jasa Jahit", desc: "Gaun pesta, gaun pengantin, kebaya, jas, hingga seragam — dibuat dari pola personal sesuai ukuran dan siluet tubuh Anda." },
   { num: "02", title: "Permak", desc: "Mengecilkan, membesarkan, memotong, atau memperbaiki busana kesayangan agar kembali pas dan nyaman dipakai." },
-  { num: "03", title: "Payet", desc: "Pemasangan payet, manik, dan mutiara handmade oleh pengrajin berpengalaman untuk detail yang berkilau." },
+  { num: "03", title: "Payet", desc: "Pemasangan payet, manik, dan mutiara secara manual oleh pengrajin berpengalaman untuk detail yang berkilau." },
   { num: "04", title: "Sewa Kebaya", desc: "Koleksi kebaya untuk wisuda, lamaran, dan acara spesial — tampil anggun tanpa harus membeli." },
 ];
 
 const PROCESS = [
   { step: "01", title: "Chat WhatsApp", desc: "Ceritakan kebutuhan dan referensi desain Anda." },
-  { step: "02", title: "Ukur & Konsultasi", desc: "Datang ke atelier untuk pengukuran detail." },
+  { step: "02", title: "Ukur & Konsultasi", desc: "Datang ke tempat kami untuk pengukuran detail." },
   { step: "03", title: "Fitting", desc: "Penyesuaian hingga potongan jatuh sempurna." },
   { step: "04", title: "Selesai", desc: "Busana siap dikenakan di hari spesial Anda." },
 ];
@@ -40,6 +40,14 @@ const FAQS = [
   {
     q: "Apakah menerima pesanan seragam dalam jumlah banyak?",
     a: "Ya, kami melayani seragam bridesmaid, seragam keluarga, batik kantor, hingga seragam sekolah.",
+  },
+  {
+    q: "Apakah bisa bayar DP terlebih dahulu?",
+    a: "Bisa. Anda cukup membayar DP saat pemesanan, dan sisanya dilunasi ketika busana selesai.",
+  },
+  {
+    q: "Metode pembayaran apa saja yang diterima?",
+    a: "Kami menerima pembayaran tunai langsung di tempat maupun transfer bank.",
   },
   {
     q: "Di mana lokasi Fides Tailor?",
@@ -89,12 +97,12 @@ export default function Home() {
           <HeroCanvas />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-stone-50/40 via-transparent to-stone-50 pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-5 sm:px-8 py-20 sm:py-24 text-center">
-            <p className="hero-in text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] text-gold-800 font-semibold">Penjahit Bespoke · Lamongan · Sejak 1996</p>
+            <p className="hero-in text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] text-gold-800 font-semibold">Penjahit Lamongan · Sejak 1996</p>
             <h1 className="hero-in [animation-delay:120ms] mt-6 sm:mt-8 font-serif text-[2.6rem] leading-[1.08] sm:text-6xl md:text-7xl lg:text-8xl font-light text-stone-900 tracking-tight">
               Busana yang dijahit <span className="italic gold-text-gradient">khusus untuk Anda.</span>
             </h1>
             <p className="hero-in [animation-delay:260ms] mt-6 sm:mt-8 text-stone-700 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-              Gaun, kebaya, jas, dan payet handmade — dikerjakan dengan teliti oleh atelier Fides Tailor di Lamongan.
+              Jahit busana baru, permak, payet, hingga sewa kebaya — semuanya dikerjakan dengan teliti oleh tangan-tangan terampil Fides Tailor.
             </p>
             <div className="hero-in [animation-delay:400ms] mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8">
               <WaButton />
@@ -115,7 +123,7 @@ export default function Home() {
             <RevealImage className="relative aspect-[4/5] overflow-hidden bg-stone-100">
               <Image
                 src="/images/payet.png"
-                alt="Detail sulam payet handmade Fides Tailor Lamongan"
+                alt="Detail sulam payet buatan tangan Fides Tailor Lamongan"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-[1.5s] hover:scale-105"
@@ -127,13 +135,13 @@ export default function Home() {
                 Tiga dekade menjahit dengan <span className="italic">ketelitian.</span>
               </Reveal>
               <p className="text-stone-700 text-base md:text-lg leading-relaxed">
-                <strong className="font-medium text-stone-900">Fides Tailor</strong> adalah atelier jahit di Lamongan yang berdiri sejak 1996. Setiap busana dibuat dari pola personal, dijahit dengan tangan terampil, dan disesuaikan hingga benar-benar pas.
+                <strong className="font-medium text-stone-900">Fides Tailor</strong> adalah rumah jahit di Lamongan yang berdiri sejak 1996. Setiap busana dibuat dari pola personal, dijahit dengan tangan terampil, dan disesuaikan hingga benar-benar pas.
               </p>
               <dl className="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200">
                 {([
                   [30, "", "Tahun"],
                   [10, "k+", "Busana"],
-                  [100, "%", "Handmade"],
+                  [100, "%", "Buatan Tangan"],
                 ] as const).map(([num, suffix, label]) => (
                   <div key={label} className="flex flex-col-reverse">
                     <dt className="text-xs uppercase tracking-wider text-stone-600 mt-1">{label}</dt>
@@ -179,7 +187,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="max-w-2xl mb-12 sm:mb-16 space-y-5">
               <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Cara Pesan</Reveal>
-              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">Mudah, cukup mulai dari chat.</Reveal>
+              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">Mudah, cukup mulai dari WhatsApp.</Reveal>
             </div>
             <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
               {PROCESS.map((p, i) => (
@@ -198,8 +206,8 @@ export default function Home() {
         <MotionSection id="faq" className="py-20 sm:py-28 lg:py-36">
           <div className="max-w-3xl mx-auto px-4 md:px-8">
             <div className="text-center mb-14 space-y-6">
-              <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">FAQ</Reveal>
-              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900">Pertanyaan umum</Reveal>
+              <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Tanya Jawab</Reveal>
+              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900">Pertanyaan yang sering diajukan</Reveal>
             </div>
             <div className="divide-y divide-stone-200 border-y border-stone-200">
               {FAQS.map((f) => (
@@ -231,7 +239,7 @@ export default function Home() {
               menjadi busana.
             </Reveal>
             <Reveal as="p" delay={0.2} className="mt-8 text-stone-300 text-base md:text-lg max-w-md leading-relaxed">
-              Kirim referensi desain atau ceritakan acara Anda. Atelier kami siap membantu dari ukuran pertama hingga jahitan terakhir.
+              Kirim referensi desain atau ceritakan acara Anda. Kami siap membantu dari ukuran pertama hingga jahitan terakhir.
             </Reveal>
             <a
               href={waLink()}
@@ -239,7 +247,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="cta-shine group relative mt-12 inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-gold-300 via-gold-200 to-gold-400 pl-8 pr-2 py-2 text-stone-950 text-sm font-semibold tracking-wide shadow-[0_0_60px_-10px_rgba(214,191,123,0.6)] transition-shadow duration-500 hover:shadow-[0_0_80px_-5px_rgba(214,191,123,0.8)]"
             >
-              Chat via WhatsApp
+              Hubungi via WhatsApp
               <span className="w-11 h-11 rounded-full bg-stone-950 text-gold-200 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
                 <ArrowUpRight className="w-4 h-4" />
               </span>
@@ -262,7 +270,7 @@ export default function Home() {
               Your style, <span className="italic text-gold-300">our hands.</span>
             </p>
             <p className="mt-5 max-w-lg text-sm md:text-base text-stone-400 leading-relaxed">
-              Gaya adalah milik Anda — kami yang mewujudkannya. Dari permak hingga busana baru, setiap jahitan dikerjakan tangan terampil atelier kami di Lamongan sejak 1996.
+              Gaya adalah milik Anda — kami yang mewujudkannya. Dari permak hingga busana baru, setiap jahitan dikerjakan tangan terampil kami di Lamongan sejak 1996.
             </p>
             <SocialLinks className="mt-8" />
           </div>
@@ -291,7 +299,7 @@ export default function Home() {
             </nav>
 
             <address className="not-italic">
-              <h2 className="text-[11px] uppercase tracking-[0.3em] text-gold-400 font-semibold">Atelier</h2>
+              <h2 className="text-[11px] uppercase tracking-[0.3em] text-gold-400 font-semibold">Lokasi</h2>
               <div className="mt-5 space-y-3 text-sm leading-relaxed">
                 <p className="flex justify-center sm:justify-start gap-3"><MapPin className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Jl. Pahlawan RT 01/RW 07 No. 3, Kalianyar, Lamongan</a></p>
                 <p className="flex justify-center sm:justify-start gap-3"><Phone className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={waLink()} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{WA_DISPLAY}</a></p>

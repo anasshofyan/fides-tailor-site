@@ -21,12 +21,12 @@ const PROJECTS: Project[] = [
     title: "Gaun Pengantin Brokat Emas",
     category: "Gaun Pengantin",
     image: "/images/gown.png",
-    desc: "Gaun pengantin ivory dengan aksen brokat emas dan bordir handmade.",
+    desc: "Gaun pengantin warna gading dengan aksen brokat emas dan bordir tangan.",
     span: "sm:col-span-2 sm:aspect-[16/10] lg:row-span-2",
   },
   {
     id: 2,
-    title: "Dress Bridesmaid Sifon",
+    title: "Gaun Bridesmaid Sifon",
     category: "Bridesmaid",
     image: "/images/bridesmaid.png",
     desc: "Sifon premium yang jatuh lembut dengan detail lipit di bagian dada.",
@@ -35,9 +35,9 @@ const PROJECTS: Project[] = [
   {
     id: 3,
     title: "Detail Payet & Mutiara",
-    category: "Payet Handmade",
+    category: "Payet Tangan",
     image: "/images/payet.png",
-    desc: "Manik mutiara dan payet jepang yang dipasang satu per satu dengan tangan.",
+    desc: "Manik mutiara dan payet Jepang yang dipasang satu per satu dengan tangan.",
     span: "",
   },
   {
@@ -68,9 +68,9 @@ export default function Portfolio() {
     <div className="w-full">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
         <div className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Lookbook</p>
+          <p className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Galeri</p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">
-            Karya pilihan <span className="italic">atelier kami</span>
+            Karya pilihan <span className="italic">tangan kami</span>
           </h2>
         </div>
         <p className="text-stone-600 max-w-xs">Setiap busana dibuat satu per satu, khusus untuk pemakainya.</p>
