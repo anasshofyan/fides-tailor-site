@@ -132,8 +132,8 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
             <RevealImage className="relative aspect-[4/5] overflow-hidden bg-stone-100">
               <Image
-                src="/images/payet.png"
-                alt="Detail sulam payet buatan tangan Fides Tailor Lamongan"
+                src="/images/galeri-detail-payet-navy.jpg"
+                alt="Detail payet mutiara dan kristal buatan tangan Fides Tailor Lamongan"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-[1.5s] hover:scale-105"

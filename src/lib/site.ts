@@ -16,5 +16,5 @@ export const SITE = {
   },
   geo: { lat: -7.127123, lng: 112.4062927 },
   socials: [SOCIALS.instagram, SOCIALS.tiktok],
-  images: ["/images/gown.png", "/images/bridesmaid.png", "/images/payet.png", "/images/uniform.png"],
+  images: ["/images/galeri-kebaya-pengantin-putih.jpg", "/images/galeri-kebaya-biru-gradasi.jpg", "/images/galeri-gaun-dusty-pink.jpg", "/images/galeri-kebaya-maroon-payet.jpg"],
 };

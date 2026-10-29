@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Plus, X } from "lucide-react";
+import { ArrowUpRight, Plus, X } from "lucide-react";
+import { SOCIALS } from "@/lib/contact";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Project {
@@ -14,38 +15,70 @@ interface Project {
   span: string;
 }
 
-// Bento layout: one hero piece, one wide, two squares
+// Portrait grid: all photos are mannequin shots, so every tile keeps a 3:4 frame.
 const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "Gaun Pengantin Brokat Emas",
-    category: "Gaun Pengantin",
-    image: "/images/gown.png",
-    desc: "Gaun pengantin warna gading dengan aksen brokat emas dan bordir tangan.",
-    span: "sm:col-span-2 sm:aspect-[16/10] lg:row-span-2",
+    title: "Kebaya Pengantin Putih",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-pengantin-putih.jpg",
+    desc: "Kebaya brokat putih dengan taburan payet kristal dan mutiara di seluruh badan.",
+    span: "",
   },
   {
     id: 2,
-    title: "Gaun Bridesmaid Sifon",
-    category: "Bridesmaid",
-    image: "/images/bridesmaid.png",
-    desc: "Sifon premium yang jatuh lembut dengan detail lipit di bagian dada.",
-    span: "lg:col-span-2",
+    title: "Kebaya Biru Gradasi",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-biru-gradasi.jpg",
+    desc: "Satin gradasi biru dengan rumbai manik di pinggang dan payet di kerah serta lengan.",
+    span: "",
   },
   {
     id: 3,
-    title: "Detail Payet & Mutiara",
-    category: "Payet Tangan",
-    image: "/images/payet.png",
-    desc: "Manik mutiara dan payet Jepang yang dipasang satu per satu dengan tangan.",
+    title: "Kebaya Navy Satin",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-navy-payet.jpg",
+    desc: "Satin navy berpotongan pas badan dengan payet di kerah, belahan depan, dan manset.",
     span: "",
   },
   {
     id: 4,
-    title: "Jas & Seragam Formal",
-    category: "Jas & Seragam",
-    image: "/images/uniform.png",
-    desc: "Jas formal pria dan seragam instansi dengan potongan bahu presisi.",
+    title: "Gaun Dusty Pink",
+    category: "Gaun Pesta",
+    image: "/images/galeri-gaun-dusty-pink.jpg",
+    desc: "Gaun satin dengan draperi di badan, lengan brokat bordir, dan payet mutiara di leher.",
+    span: "",
+  },
+  {
+    id: 5,
+    title: "Kebaya Maroon Brokat",
+    category: "Payet",
+    image: "/images/galeri-kebaya-maroon-payet.jpg",
+    desc: "Brokat maroon dengan payet bunga di sepanjang bagian depan dan lengan terompet.",
+    span: "",
+  },
+  {
+    id: 6,
+    title: "Kebaya Mocca & Kain Batik",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-mocca-batik.jpg",
+    desc: "Kebaya brokat mocca berpayet kristal dan mutiara, dipadukan rok kain batik.",
+    span: "",
+  },
+  {
+    id: 7,
+    title: "Kebaya Kartini Abu",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-kartini-abu.jpg",
+    desc: "Kebaya kartini brokat abu dengan payet hitam-putih bergelombang di bagian depan.",
+    span: "",
+  },
+  {
+    id: 8,
+    title: "Detail Payet Navy",
+    category: "Payet",
+    image: "/images/galeri-detail-payet-navy.jpg",
+    desc: "Rangkaian mutiara, manik, dan kristal yang dipasang satu per satu dengan tangan.",
     span: "",
   },
 ];
@@ -76,7 +109,7 @@ export default function Portfolio() {
         <p className="text-stone-600 max-w-xs">Setiap busana dibuat satu per satu, khusus untuk pemakainya.</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[240px] xl:auto-rows-[300px] gap-3 md:gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {PROJECTS.map((project, idx) => (
           <motion.button
             key={project.id}
@@ -86,14 +119,14 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className={`group relative overflow-hidden bg-stone-200 aspect-[4/5] lg:aspect-auto cursor-pointer text-left ${project.span}`}
+            className={`group relative overflow-hidden bg-stone-200 aspect-[3/4] cursor-pointer text-left ${project.span}`}
             aria-label={`Lihat ${project.title}`}
           >
             <Image
               src={project.image}
               alt={`${project.title} — Fides Tailor Lamongan`}
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 1024px) 50vw, 25vw"
               className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/10 to-transparent opacity-90 lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100 transition-opacity duration-500" />
@@ -108,6 +141,27 @@ export default function Portfolio() {
             </div>
           </motion.button>
         ))}
+      </div>
+
+      <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-stone-200 pt-8">
+        <p className="text-stone-600 text-center sm:text-left">Lihat semua karya terbaru kami di media sosial.</p>
+        <div className="flex gap-3">
+          {[
+            { href: SOCIALS.instagram, label: "Instagram" },
+            { href: SOCIALS.tiktok, label: "TikTok" },
+          ].map(({ href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full border border-stone-300 px-5 py-2.5 text-xs uppercase tracking-[0.2em] font-semibold text-stone-800 transition-colors hover:border-gold-600 hover:text-gold-800 hover:bg-gold-50"
+            >
+              {label}
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          ))}
+        </div>
       </div>
 
       <AnimatePresence>
@@ -130,7 +184,7 @@ export default function Portfolio() {
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative aspect-square md:aspect-auto md:min-h-[480px] bg-stone-200">
+              <div className="relative aspect-[3/4] bg-stone-200">
                 <Image src={active.image} alt={active.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center space-y-5">
