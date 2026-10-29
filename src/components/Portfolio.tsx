@@ -6,13 +6,18 @@ import { ArrowUpRight, Plus, X } from "lucide-react";
 import { SOCIALS } from "@/lib/contact";
 import { motion, AnimatePresence } from "framer-motion";
 
+const GROUPS = ["Semua", "Kebaya", "Gaun", "Batik & Tenun", "Seragam & Kostum"] as const;
+const PAGE_SIZE = 12;
+type Group = Exclude<(typeof GROUPS)[number], "Semua">;
+
 interface Project {
   id: number;
   title: string;
   category: string;
   image: string;
   desc: string;
-  span: string;
+  group: Group;
+  wide?: boolean;
 }
 
 // Portrait grid: all photos are mannequin shots, so every tile keeps a 3:4 frame.
@@ -23,7 +28,7 @@ const PROJECTS: Project[] = [
     category: "Jahit & Payet",
     image: "/images/galeri-kebaya-pengantin-putih.jpg",
     desc: "Kebaya brokat putih dengan taburan payet kristal dan mutiara di seluruh badan.",
-    span: "",
+    group: "Kebaya",
   },
   {
     id: 2,
@@ -31,7 +36,7 @@ const PROJECTS: Project[] = [
     category: "Jahit & Payet",
     image: "/images/galeri-kebaya-biru-gradasi.jpg",
     desc: "Satin gradasi biru dengan rumbai manik di pinggang dan payet di kerah serta lengan.",
-    span: "",
+    group: "Kebaya",
   },
   {
     id: 3,
@@ -39,7 +44,7 @@ const PROJECTS: Project[] = [
     category: "Jahit & Payet",
     image: "/images/galeri-kebaya-navy-payet.jpg",
     desc: "Satin navy berpotongan pas badan dengan payet di kerah, belahan depan, dan manset.",
-    span: "",
+    group: "Kebaya",
   },
   {
     id: 4,
@@ -47,7 +52,7 @@ const PROJECTS: Project[] = [
     category: "Gaun Pesta",
     image: "/images/galeri-gaun-dusty-pink.jpg",
     desc: "Gaun satin dengan draperi di badan, lengan brokat bordir, dan payet mutiara di leher.",
-    span: "",
+    group: "Gaun",
   },
   {
     id: 5,
@@ -55,7 +60,7 @@ const PROJECTS: Project[] = [
     category: "Payet",
     image: "/images/galeri-kebaya-maroon-payet.jpg",
     desc: "Brokat maroon dengan payet bunga di sepanjang bagian depan dan lengan terompet.",
-    span: "",
+    group: "Kebaya",
   },
   {
     id: 6,
@@ -63,7 +68,7 @@ const PROJECTS: Project[] = [
     category: "Jahit & Payet",
     image: "/images/galeri-kebaya-mocca-batik.jpg",
     desc: "Kebaya brokat mocca berpayet kristal dan mutiara, dipadukan rok kain batik.",
-    span: "",
+    group: "Kebaya",
   },
   {
     id: 7,
@@ -71,7 +76,7 @@ const PROJECTS: Project[] = [
     category: "Jahit & Payet",
     image: "/images/galeri-kebaya-kartini-abu.jpg",
     desc: "Kebaya kartini brokat abu dengan payet hitam-putih bergelombang di bagian depan.",
-    span: "",
+    group: "Kebaya",
   },
   {
     id: 8,
@@ -79,12 +84,226 @@ const PROJECTS: Project[] = [
     category: "Payet",
     image: "/images/galeri-detail-payet-navy.jpg",
     desc: "Rangkaian mutiara, manik, dan kristal yang dipasang satu per satu dengan tangan.",
-    span: "",
+    group: "Kebaya",
+  },
+  {
+    id: 9,
+    title: "Seragam Blazer Hijau",
+    category: "Seragam",
+    image: "/images/galeri-seragam-blazer-hijau.jpg",
+    desc: "Blazer sekolah hijau dengan list krem di kerah, saku, dan lengan, lengkap dengan bed lambang.",
+    group: "Seragam & Kostum",
+  },
+  {
+    id: 10,
+    title: "Seragam Batik Sekolah",
+    category: "Seragam",
+    image: "/images/galeri-seragam-batik-maroon.jpg",
+    desc: "Kemeja batik motif sekolah dipadukan rok lipit maroon.",
+    group: "Seragam & Kostum",
+  },
+  {
+    id: 11,
+    title: "Seragam Salur Navy",
+    category: "Seragam",
+    image: "/images/galeri-seragam-salur-navy.jpg",
+    desc: "Kemeja salur hitam-putih dengan kerah dan manset navy, serta rok lipit senada.",
+    group: "Seragam & Kostum",
+  },
+  {
+    id: 12,
+    title: "Seragam Pramuka",
+    category: "Seragam",
+    image: "/images/galeri-seragam-pramuka.jpg",
+    desc: "Seragam pramuka berpotongan rapi dengan pundak, saku, dan aksen garis di lengan.",
+    group: "Seragam & Kostum",
+  },
+  {
+    id: 13,
+    title: "Gaun Anak Sequin",
+    category: "Gaun",
+    image: "/images/galeri-gaun-anak-sequin.jpg",
+    desc: "Gaun anak dengan atasan sequin dan rok tile mengembang, lengan ruffle.",
+    group: "Gaun",
+  },
+  {
+    id: 14,
+    title: "Atasan Batik Kerja",
+    category: "Batik",
+    image: "/images/galeri-batik-kerja.jpg",
+    desc: "Atasan batik berpotongan pas badan dengan kerah asimetris dan model kutubaru.",
+    group: "Batik & Tenun",
+  },
+  {
+    id: 15,
+    title: "Kebaya Pink Kondangan",
+    category: "Kebaya",
+    image: "/images/galeri-kebaya-pink-kondangan.jpg",
+    desc: "Kebaya satin pink kembaran untuk kondangan, dengan aksen payet di badan dan lengan.",
+    group: "Kebaya",
+  },
+  {
+    id: 16,
+    title: "Kebaya Wisuda Maroon",
+    category: "Kebaya",
+    image: "/images/galeri-kebaya-wisuda-maroon.jpg",
+    desc: "Kebaya brokat maroon berpayet dengan lengan terompet, dipadukan rok songket krem.",
+    group: "Kebaya",
+  },
+  {
+    id: 17,
+    title: "Gamis Lilac Brokat",
+    category: "Gaun",
+    image: "/images/galeri-gamis-lilac-brokat.jpg",
+    desc: "Gamis lilac berlapis brokat bordir putih dengan manset ruffle.",
+    group: "Gaun",
+  },
+  {
+    id: 18,
+    title: "Seragam Keluarga Lilac",
+    category: "Seragam",
+    image: "/images/galeri-seragam-keluarga-lilac.jpg",
+    desc: "Seragam keluarga untuk acara pernikahan: gamis satin lilac dengan luaran brokat motif jaring.",
+    group: "Gaun",
+    wide: true,
+  },
+  {
+    id: 19,
+    title: "Gaun Kondangan Cream",
+    category: "Gaun Pesta",
+    image: "/images/galeri-gaun-kondangan-cream.jpg",
+    desc: "Dua model gaun cream untuk kondangan — tunik brokat bordir dan dress satin model lilit.",
+    group: "Gaun",
+  },
+  {
+    id: 20,
+    title: "Kebaya Pengantin Adat",
+    category: "Kebaya Pengantin",
+    image: "/images/galeri-kebaya-pengantin-adat.jpg",
+    desc: "Kebaya pengantin putih berpayet kristal dan mutiara, dipakai bersama riasan adat.",
+    group: "Kebaya",
+  },
+  {
+    id: 21,
+    title: "Kebaya Olive Brokat",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-olive-brokat.jpg",
+    desc: "Kebaya brokat hijau olive dengan payet kristal di kerah dan sepanjang kancing depan.",
+    group: "Kebaya",
+  },
+  {
+    id: 22,
+    title: "Kostum Dance Hitam",
+    category: "Kostum",
+    image: "/images/galeri-kostum-dance-hitam.jpg",
+    desc: "Kostum tim dance serba hitam dengan model berbeda untuk tiap anggota, dibuat sesuai konsep.",
+    group: "Seragam & Kostum",
+    wide: true,
+  },
+  {
+    id: 23,
+    title: "Atasan Tenun Ikat",
+    category: "Tenun",
+    image: "/images/galeri-atasan-tenun-ikat.jpg",
+    desc: "Atasan tenun ikat model kutubaru dengan lengan salur dan pundak tegas.",
+    group: "Batik & Tenun",
+  },
+  {
+    id: 24,
+    title: "Kebaya Hitam Mutiara",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-hitam-mutiara.jpg",
+    desc: "Kebaya brokat hitam dengan rangkaian mutiara dan manik, dilengkapi selendang tile.",
+    group: "Kebaya",
+  },
+  {
+    id: 25,
+    title: "Gamis Navy Payet",
+    category: "Gaun Pesta",
+    image: "/images/galeri-gamis-navy-payet.jpg",
+    desc: "Gamis navy polos dengan payet mutiara di leher dan manset.",
+    group: "Gaun",
+  },
+  {
+    id: 26,
+    title: "Kebaya Wisuda Kuning",
+    category: "Kebaya",
+    image: "/images/galeri-kebaya-wisuda-kuning.jpg",
+    desc: "Kebaya brokat kuning gading kembaran untuk wisuda, dipadukan rok senada.",
+    group: "Kebaya",
+  },
+  {
+    id: 27,
+    title: "Blazer Batik Kombinasi",
+    category: "Batik",
+    image: "/images/galeri-blazer-batik-kombinasi.jpg",
+    desc: "Blazer batik model double-breasted dengan kerah dan panel kain hitam polos.",
+    group: "Batik & Tenun",
+  },
+  {
+    id: 28,
+    title: "Kebaya Maroon Satin",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-maroon-satin.jpg",
+    desc: "Kebaya satin maroon dengan kancing bungkus di depan dan payet di belahan serta manset.",
+    group: "Kebaya",
+  },
+  {
+    id: 29,
+    title: "Seragam Batik Kantor",
+    category: "Seragam Batik",
+    image: "/images/galeri-seragam-batik-kantor.jpg",
+    desc: "Dua model seragam batik instansi — kerah bulat dengan list navy dan kerah kemeja klasik.",
+    group: "Batik & Tenun",
+  },
+  {
+    id: 30,
+    title: "Batik Kombinasi Biru",
+    category: "Batik",
+    image: "/images/galeri-batik-kombinasi-biru.jpg",
+    desc: "Atasan batik dengan panel depan polos biru, kerah shanghai, dan kancing bungkus.",
+    group: "Batik & Tenun",
+  },
+  {
+    id: 31,
+    title: "Kebaya Mocca Satin",
+    category: "Jahit & Payet",
+    image: "/images/galeri-kebaya-mocca-satin.jpg",
+    desc: "Kebaya satin mocca dengan payet kristal dan manik emas mengikuti garis asimetris.",
+    group: "Kebaya",
+  },
+  {
+    id: 32,
+    title: "Couple Batik & Kebaya",
+    category: "Couple",
+    image: "/images/galeri-couple-batik-kebaya.jpg",
+    desc: "Pasangan kemeja batik pria dan kebaya brokat kuning dengan aplikasi bunga 3D, dipadukan rok batik senada.",
+    group: "Kebaya",
+  },
+  {
+    id: 33,
+    title: "Seragam Batik Korpri",
+    category: "Seragam Batik",
+    image: "/images/galeri-seragam-batik-korpri.jpg",
+    desc: "Seragam batik Korpri model kerah shanghai dengan potongan pas badan.",
+    group: "Batik & Tenun",
+  },
+  {
+    id: 34,
+    title: "Gaun Navy Kombinasi Batik",
+    category: "Gaun Pesta",
+    image: "/images/galeri-gaun-navy-batik.jpg",
+    desc: "Gaun satin navy dengan panel batik di tengah, lengan tile, dan taburan mutiara di sepanjang belahan.",
+    group: "Gaun",
   },
 ];
 
 export default function Portfolio() {
   const [active, setActive] = useState<Project | null>(null);
+  const [filter, setFilter] = useState<(typeof GROUPS)[number]>("Semua");
+  const [limit, setLimit] = useState(PAGE_SIZE);
+  const filtered = filter === "Semua" ? PROJECTS : PROJECTS.filter((p) => p.group === filter);
+  const shown = filtered.slice(0, limit);
 
   useEffect(() => {
     if (!active) return;
@@ -109,8 +328,29 @@ export default function Portfolio() {
         <p className="text-stone-600 max-w-xs">Setiap busana dibuat satu per satu, khusus untuk pemakainya.</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-        {PROJECTS.map((project, idx) => (
+      <div role="group" aria-label="Filter galeri" className="flex flex-wrap gap-2 mb-8">
+        {GROUPS.map((g) => (
+          <button
+            key={g}
+            type="button"
+            onClick={() => {
+              setFilter(g);
+              setLimit(PAGE_SIZE);
+            }}
+            aria-pressed={filter === g}
+            className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.15em] font-semibold border transition-colors cursor-pointer ${
+              filter === g
+                ? "bg-stone-900 border-stone-900 text-white"
+                : "border-stone-300 text-stone-700 hover:border-gold-600 hover:text-gold-800"
+            }`}
+          >
+            {g}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 grid-flow-dense gap-3 md:gap-4">
+        {shown.map((project, idx) => (
           <motion.button
             key={project.id}
             type="button"
@@ -118,8 +358,8 @@ export default function Portfolio() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className={`group relative overflow-hidden bg-stone-200 aspect-[3/4] cursor-pointer text-left ${project.span}`}
+            transition={{ duration: 0.7, delay: (idx % 4) * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className={`group relative overflow-hidden bg-stone-200 cursor-pointer text-left ${project.wide ? "col-span-2 aspect-[3/2]" : "aspect-[3/4]"}`}
             aria-label={`Lihat ${project.title}`}
           >
             <Image
@@ -142,6 +382,18 @@ export default function Portfolio() {
           </motion.button>
         ))}
       </div>
+
+      {filtered.length > limit && (
+        <div className="mt-10 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setLimit((l) => l + PAGE_SIZE)}
+            className="rounded-full bg-stone-900 px-7 py-3 text-xs uppercase tracking-[0.2em] font-semibold text-white transition-colors hover:bg-stone-700 cursor-pointer"
+          >
+            Tampilkan lebih banyak ({filtered.length - limit})
+          </button>
+        </div>
+      )}
 
       <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-stone-200 pt-8">
         <p className="text-stone-600 text-center sm:text-left">Lihat semua karya terbaru kami di media sosial.</p>
@@ -184,7 +436,7 @@ export default function Portfolio() {
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative aspect-[3/4] bg-stone-200">
+              <div className={`relative bg-stone-200 ${active.wide ? "aspect-[3/2] md:col-span-2" : "aspect-[3/4]"}`}>
                 <Image src={active.image} alt={active.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center space-y-5">
