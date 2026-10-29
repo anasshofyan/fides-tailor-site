@@ -15,10 +15,10 @@ import { NAV_LINKS } from "@/lib/nav";
 import { WA_DISPLAY, waLink } from "@/lib/contact";
 
 const SERVICES = [
-  { num: "01", title: "Gaun Pesta & Pengantin", desc: "Gaun malam, gaun pengantin, dan dress kustom dengan fitting detail sesuai siluet tubuh Anda." },
-  { num: "02", title: "Kebaya Modern & Bridesmaid", desc: "Kebaya kontemporer, busana wisuda, dan seragam bridesmaid dengan potongan pas badan." },
-  { num: "03", title: "Jas & Setelan Formal", desc: "Setelan jas pria dengan furing rapi, bahu presisi, dan konstruksi standar butik." },
-  { num: "04", title: "Payet & Sulam Tangan", desc: "Pemasangan payet dan mutiara handmade oleh pengrajin berpengalaman." },
+  { num: "01", title: "Jasa Jahit", desc: "Gaun pesta, gaun pengantin, kebaya, jas, hingga seragam — dibuat dari pola personal sesuai ukuran dan siluet tubuh Anda." },
+  { num: "02", title: "Permak", desc: "Mengecilkan, membesarkan, memotong, atau memperbaiki busana kesayangan agar kembali pas dan nyaman dipakai." },
+  { num: "03", title: "Payet", desc: "Pemasangan payet, manik, dan mutiara handmade oleh pengrajin berpengalaman untuk detail yang berkilau." },
+  { num: "04", title: "Sewa Kebaya", desc: "Koleksi kebaya untuk wisuda, lamaran, dan acara spesial — tampil anggun tanpa harus membeli." },
 ];
 
 const PROCESS = [
@@ -75,8 +75,6 @@ function WaButton({ label = "Konsultasi via WhatsApp", dark = true }: { label?: 
     </a>
   );
 }
-
-const FOOTER_SERVICES = ["Permak", "Jasa Jahit", "Payet", "Sewa Kebaya"];
 
 export default function Home() {
   return (
@@ -152,7 +150,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="max-w-2xl mb-12 sm:mb-16 space-y-5">
               <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Layanan</Reveal>
-              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">Jasa jahit bespoke di Lamongan</Reveal>
+              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">Jahit, permak, payet &amp; sewa kebaya di Lamongan</Reveal>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-200 border border-stone-200">
               {SERVICES.map((srv, index) => (
@@ -273,8 +271,10 @@ export default function Home() {
             <div>
               <h2 className="text-[11px] uppercase tracking-[0.3em] text-gold-400 font-semibold">Layanan</h2>
               <ul className="mt-5 flex flex-wrap justify-center sm:justify-start sm:flex-col gap-x-6 gap-y-3 text-sm">
-                {FOOTER_SERVICES.map((service) => (
-                  <li key={service}>{service}</li>
+                {SERVICES.map((srv) => (
+                  <li key={srv.num}>
+                    <a href="#layanan" className="luxury-underline hover:text-white transition-colors">{srv.title}</a>
+                  </li>
                 ))}
               </ul>
             </div>

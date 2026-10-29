@@ -5,7 +5,7 @@ export const SITE = {
   name: "Fides Tailor",
   title: "Fides Tailor — Penjahit Bespoke Lamongan | Gaun, Kebaya, Jas & Payet",
   description:
-    "Fides Tailor, penjahit bespoke di Lamongan sejak 1996. Jasa jahit gaun pengantin, kebaya modern, bridesmaid, jas pria, seragam & payet handmade. Konsultasi gratis via WhatsApp.",
+    "Fides Tailor, penjahit bespoke di Lamongan sejak 1996. Jasa jahit gaun pengantin, kebaya modern, bridesmaid, jas pria, seragam, payet handmade, permak & sewa kebaya. Konsultasi gratis via WhatsApp.",
   phone: `+${WA_NUMBER}`,
   address: {
     street: "Jl. Pahlawan RT 01/RW 07 No. 3, Kalianyar (sebelah barat pasar)",
