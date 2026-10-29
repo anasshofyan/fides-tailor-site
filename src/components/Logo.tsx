@@ -15,7 +15,7 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
         alt="Fides Tailor"
         width={44}
         height={44}
-        priority
+        preload
         className="w-11 h-11 object-contain transition-all duration-700 hover:scale-105"
       />
 

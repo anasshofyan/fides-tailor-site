@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     root: path.resolve("."),
   },
   outputFileTracingRoot: path.resolve("."),
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 export default nextConfig;
