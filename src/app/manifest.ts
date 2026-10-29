@@ -1,0 +1,14 @@
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "Fides Tailor — Bespoke Atelier Lamongan",
+    short_name: "Fides Tailor",
+    description: "Penjahit bespoke di Lamongan: gaun pesta, kebaya modern, jas formal, dan payet handmade.",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#faf9f6",
+    theme_color: "#0f0e0d",
+    icons: [{ src: "/favicon.ico", sizes: "any", type: "image/x-icon" }],
+  };
+}

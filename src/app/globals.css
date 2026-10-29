@@ -1,26 +1,263 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-serif), Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-gold-50: #fbf9f4;
+  --color-gold-100: #f4edd9;
+  --color-gold-200: #e7daaf;
+  --color-gold-300: #d6bf7b;
+  --color-gold-400: #c9a451;
+  --color-gold-500: #bfa054; /* Muted Champagne Gold */
+  --color-gold-600: #a7833e;
+  --color-gold-700: #88642f;
+  --color-gold-800: #6b4d27;
+  --color-gold-900: #553e20;
+  --color-gold-950: #30200f;
+
+  --color-stone-50: #faf9f6; /* Luxury Alabaster White */
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917; /* Luxury Soft Charcoal */
+  --color-stone-950: #0f0e0d;
+
+  --animate-fade-in: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-up: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-draw-line: draw-line 2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes draw-line {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Custom Base Elements */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-stone-50);
+  color: var(--color-stone-900);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar customizations */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-stone-50);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-stone-300);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stone-400);
+}
+
+/* Luxury Card Styling */
+.atelier-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-stone-200);
+  box-shadow: 0 4px 20px -2px rgba(28, 25, 23, 0.02);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atelier-card:hover {
+  border-color: var(--color-gold-300);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -4px rgba(28, 25, 23, 0.05);
+}
+
+/* Elegant Text Underlines */
+.luxury-underline {
+  position: relative;
+}
+
+.luxury-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-gold-400);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Form focus border animation */
+.atelier-input {
+  border: none;
+  border-bottom: 1px solid var(--color-stone-300);
+  background: transparent;
+  padding: 0.75rem 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atelier-input:focus {
+  outline: none;
+  border-color: var(--color-stone-900);
+  padding-left: 0.25rem;
+}
+
+/* Luxury Collage & Frame Utilities */
+.gold-accent-frame {
+  position: relative;
+}
+
+.gold-accent-frame::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: -16px;
+  bottom: -16px;
+  border: 1px solid var(--color-gold-300);
+  z-index: 0;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-accent-frame:hover::before {
+  transform: translate(-4px, -4px);
+}
+
+.atelier-collage-item {
+  position: relative;
+  z-index: 10;
+  background-color: white;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Gold Text Gradient for premium headings */
+.gold-text-gradient {
+  background: linear-gradient(135deg, var(--color-gold-600) 0%, var(--color-gold-400) 50%, var(--color-gold-700) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Luxury Divider with central diamond */
+.luxury-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.luxury-divider::before,
+.luxury-divider::after {
+  content: "";
+  height: 1px;
+  flex-grow: 1;
+  background: linear-gradient(to right, transparent, var(--color-gold-300), transparent);
+}
+
+.luxury-diamond {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-gold-500);
+  transform: rotate(45deg);
+  border: 1px solid var(--color-gold-200);
+}
+
+/* Luxury soft gold glow */
+.gold-glow {
+  box-shadow: 0 10px 40px -15px rgba(167, 131, 62, 0.12);
+}
+
+/* Editorial badge */
+.luxury-badge {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+  border: 1px solid var(--color-gold-200);
+  padding: 0.375rem 1rem;
+  background-color: rgba(251, 249, 244, 0.6);
+  backdrop-filter: blur(4px);
+  display: inline-flex;
+  align-items: center;
+}
+
+
+/* Hero ambient glow */
+.hero-glow {
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: 60vw;
+  height: 60vw;
+  max-width: 820px;
+  max-height: 820px;
+  background: radial-gradient(circle, rgba(214, 191, 123, 0.28) 0%, rgba(214, 191, 123, 0) 65%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* Subtle fabric-like grain overlay */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Infinite service marquee */
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee,
+  .animate-slide-up {
+    animation: none;
+  }
 }
