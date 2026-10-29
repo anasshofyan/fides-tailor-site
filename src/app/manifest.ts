@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Fides Tailor — Bespoke Atelier Lamongan",
+    name: "Fides Tailor Lamongan",
     short_name: "Fides Tailor",
-    description: "Penjahit bespoke di Lamongan: gaun pesta, kebaya modern, jas formal, dan payet handmade.",
+    description: "Penjahit di Lamongan sejak 1996: jahit, permak, payet, dan sewa kebaya.",
     start_url: "/",
     display: "standalone",
     background_color: "#faf9f6",

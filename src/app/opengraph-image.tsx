@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Fides Tailor — Penjahit Bespoke Lamongan sejak 1996";
+export const alt = "Fides Tailor Lamongan — Your style, our hands.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -27,13 +27,13 @@ export default async function Image() {
       >
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 620 }}>
           <div style={{ display: "flex", fontSize: 20, letterSpacing: 6, color: "#c9a451", textTransform: "uppercase" }}>
-            Penjahit Bespoke · Lamongan · Sejak 1996
+            Penjahit Lamongan · Sejak 1996
           </div>
           <div style={{ display: "flex", fontSize: 64, lineHeight: 1.1, marginTop: 28 }}>
-            Busana yang dijahit khusus untuk Anda.
+            Your style, our hands.
           </div>
           <div style={{ display: "flex", fontSize: 28, fontStyle: "italic", color: "#d6bf7b", marginTop: 28 }}>
-            Gaun · Kebaya · Jas · Payet Handmade
+            Jahit · Permak · Payet · Sewa Kebaya
           </div>
         </div>
         <img src={logoSrc} width={330} height={346} alt="" />

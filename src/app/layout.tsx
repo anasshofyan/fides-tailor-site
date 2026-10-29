@@ -37,20 +37,21 @@ export const metadata: Metadata = {
     "tailor lamongan",
     "jasa jahit lamongan",
     "jahit baju lamongan",
+    "permak baju lamongan",
+    "vermak lamongan",
+    "sewa kebaya lamongan",
     "penjahit kebaya lamongan",
-    "jahit kebaya modern lamongan",
-    "jahit gaun pengantin lamongan",
+    "jahit kebaya wisuda lamongan",
     "jahit gaun pesta lamongan",
-    "baju bridesmaid lamongan",
-    "jahit jas pria lamongan",
-    "jahit seragam lamongan",
-    "payet handmade lamongan",
-    "penjahit bespoke jawa timur",
+    "jahit seragam sekolah lamongan",
+    "jahit seragam batik lamongan",
+    "jasa payet lamongan",
+    "penjahit jawa timur",
   ],
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
   publisher: SITE.name,
-  category: "Fashion & Tailoring",
+  category: "Penjahit & Busana",
   alternates: { canonical: "/" },
   formatDetection: {
     email: false,
@@ -64,6 +65,7 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: SITE.title,
     description: SITE.description,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Fides Tailor Lamongan — Your style, our hands." }],
   },
   twitter: {
     card: "summary_large_image",
@@ -94,11 +96,10 @@ export const metadata: Metadata = {
 };
 
 const SERVICES = [
-  "Jahit Gaun Pesta & Gaun Pengantin",
-  "Jahit Kebaya Modern & Bridesmaid",
-  "Jahit Jas & Setelan Formal Pria",
-  "Payet & Sulam Tangan",
-  "Jahit Seragam & Batik",
+  "Jasa Jahit Kebaya, Gaun & Seragam",
+  "Permak & Vermak Baju",
+  "Pemasangan Payet Tangan",
+  "Sewa Kebaya",
 ];
 
 const jsonLd = {
@@ -118,11 +119,13 @@ const jsonLd = {
       "@id": `${SITE.url}/#business`,
       name: SITE.name,
       description: SITE.description,
-      slogan: "Busana yang dijahit khusus untuk Anda.",
+      slogan: SITE.tagline,
       url: SITE.url,
       logo: `${SITE.url}/icon.png`,
       image: [`${SITE.url}/opengraph-image`, ...SITE.images.map((src) => `${SITE.url}${src}`)],
       telephone: SITE.phone,
+      paymentAccepted: "Cash, Bank Transfer",
+      currenciesAccepted: "IDR",
       foundingDate: "1996",
       knowsLanguage: ["id", "jv"],
       areaServed: [
@@ -158,7 +161,7 @@ const jsonLd = {
       },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Layanan Jahit Bespoke",
+        name: "Layanan Fides Tailor",
         itemListElement: SERVICES.map((name) => ({
           "@type": "Offer",
           itemOffered: { "@type": "Service", name, areaServed: "Lamongan" },
