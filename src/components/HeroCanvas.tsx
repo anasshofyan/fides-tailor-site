@@ -39,7 +39,11 @@ function setup(THREE: Three, mount: HTMLDivElement) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 640 ? 1.5 : 2));
   renderer.setSize(mount.clientWidth, mount.clientHeight);
+  // Fade the canvas in so the late, idle-time start doesn't pop.
+  renderer.domElement.style.opacity = "0";
+  renderer.domElement.style.transition = "opacity 1.6s ease";
   mount.appendChild(renderer.domElement);
+  requestAnimationFrame(() => (renderer.domElement.style.opacity = "1"));
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, mount.clientWidth / mount.clientHeight, 0.1, 100);
@@ -47,8 +51,8 @@ function setup(THREE: Three, mount: HTMLDivElement) {
   camera.lookAt(0, 0, 0);
 
   const isSmall = window.innerWidth < 640;
-  const COLS = isSmall ? 70 : 120;
-  const ROWS = isSmall ? 36 : 60;
+  const COLS = isSmall ? 80 : 140;
+  const ROWS = isSmall ? 40 : 70;
   const positions = new Float32Array(COLS * ROWS * 3);
   for (let i = 0; i < COLS; i++) {
     for (let j = 0; j < ROWS; j++) {
@@ -67,7 +71,7 @@ function setup(THREE: Three, mount: HTMLDivElement) {
     depthWrite: false,
     uniforms: {
       uTime: { value: 0 },
-      uColor: { value: new THREE.Color("#b8913f") },
+      uColor: { value: new THREE.Color("#a7833e") },
     },
     vertexShader: /* glsl */ `
       uniform float uTime;
@@ -79,9 +83,9 @@ function setup(THREE: Three, mount: HTMLDivElement) {
             + sin((p.x + p.z) * 0.2 + uTime * 0.25) * 0.4;
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
         gl_Position = projectionMatrix * mv;
-        gl_PointSize = 3.2 * (9.0 / -mv.z);
+        gl_PointSize = 4.2 * (9.0 / -mv.z);
         // smoothstep needs edge0 < edge1, so fade with 1.0 - smoothstep
-        vAlpha = (1.0 - smoothstep(6.0, 17.0, -mv.z)) * 0.85;
+        vAlpha = (1.0 - smoothstep(7.0, 19.0, -mv.z)) * 1.0;
       }
     `,
     fragmentShader: /* glsl */ `

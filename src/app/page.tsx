@@ -105,7 +105,7 @@ export default function Home() {
         {/* HERO */}
         <section id="home" className="relative min-h-[calc(100svh-80px)] flex items-center overflow-hidden">
           <HeroCanvas />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-stone-50/40 via-transparent to-stone-50 pointer-events-none" />
+          <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(250,249,246,0.75)_0%,rgba(250,249,246,0)_60%),linear-gradient(to_bottom,transparent_70%,#faf9f6)] pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-5 sm:px-8 py-20 sm:py-24 text-center">
             <p className="hero-in text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] text-gold-800 font-semibold">Penjahit Lamongan · Sejak 1996</p>
             <h1 className="hero-in [animation-delay:120ms] mt-6 sm:mt-8 font-serif text-[2.6rem] leading-[1.08] sm:text-6xl md:text-7xl lg:text-8xl font-light text-stone-900 tracking-tight">
