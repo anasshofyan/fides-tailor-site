@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUp, ArrowUpRight, MapPin, Phone, Clock, Plus } from "lucide-react";
+import { ArrowUp, ArrowUpRight, MapPin, Phone, Clock, Plus, Star } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import HeroCanvas from "@/components/HeroCanvas";
@@ -19,6 +19,16 @@ const SERVICES = [
   { num: "02", title: "Permak", desc: "Mengecilkan, membesarkan, memotong, atau memperbaiki busana kesayangan agar kembali pas dan nyaman dipakai." },
   { num: "03", title: "Payet", desc: "Pemasangan payet, manik, dan mutiara secara manual oleh pengrajin berpengalaman untuk detail yang berkilau." },
   { num: "04", title: "Sewa Kebaya", desc: "Koleksi kebaya untuk wisuda, lamaran, dan acara spesial — tampil anggun tanpa harus membeli." },
+];
+
+// Ulasan asli dari Google Maps Fides Tailor (emoji dihapus, teks tidak diubah).
+const REVIEWS = [
+  { name: "Binar Ayu D.", tag: "Jahit Custom", text: "Mantap banget.. bisa kasi rekomendasi modelnya gimana cocoknya sama bentuk badan, dateline on time, jahitan bagus.. recommended. Terima kasih." },
+  { name: "Hanifah E.", tag: "Permak", text: "Masyaa Allah suka banget sama jahitan nya. Motongin gamis yang kepanjangan di Fides Tailor Lamongan, puas banget sama hasilnya sesuai dan pas." },
+  { name: "Yoyo A.", tag: "Payet", text: "Payetan dan jahitannya bagus banget, rapi dan pelayanannya cepat. Ownernya juga ramah, pokoknya rekomen bgt buat yg lagi cari payetan berkualitas." },
+  { name: "Dewi Intan N. Q.", tag: "Pelanggan Luar Kota", text: "Ku belain jauh2 dr luar kota gapapa, krn cuma di Fides Tailor aja yg srek di hati." },
+  { name: "Ukhty Im", tag: "Seragam", text: "Repeat order ini ceritanya, jahit seragam dadakan dan jadi sesuai estimasi. Owner ramah poll, rekomen buat jahit custom baju juga." },
+  { name: "Alifia M.", tag: "Jahit Custom", text: "Hasil jahitannya rapi banget dan detailnya bagus, fittingnya juga pas. Pelayanannya ramah dan nyaman. Aku sama temen barengan jahit di sini dan sama-sama puas." },
 ];
 
 const PROCESS = [
@@ -182,8 +192,45 @@ export default function Home() {
           </div>
         </MotionSection>
 
+        {/* ULASAN */}
+        <MotionSection id="ulasan" className="py-20 sm:py-28 lg:py-36 bg-white">
+          <div className="max-w-6xl mx-auto px-4 md:px-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-16">
+              <div className="max-w-2xl space-y-5">
+                <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Ulasan Pelanggan</Reveal>
+                <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">
+                  Kata mereka yang <span className="italic">sudah menjahit</span> di sini.
+                </Reveal>
+              </div>
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 text-sm text-stone-700 hover:text-stone-900">
+                <span className="flex gap-0.5 text-gold-600" aria-hidden>
+                  {Array.from({ length: 5 }, (_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </span>
+                <span className="luxury-underline">Lihat semua ulasan di Google Maps</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            </div>
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-200 border border-stone-200">
+              {REVIEWS.map((r, i) => (
+                <Reveal as="li" key={r.name} delay={(i % 3) * 0.1} className="bg-white p-7 sm:p-9 flex">
+                  <figure className="flex flex-col justify-between gap-8 w-full">
+                    <div className="space-y-5">
+                      <span aria-hidden className="block font-serif text-5xl leading-none text-gold-400">&ldquo;</span>
+                      <blockquote className="text-stone-700 leading-relaxed">{r.text}</blockquote>
+                    </div>
+                    <figcaption className="flex items-center justify-between gap-4 pt-5 border-t border-stone-100">
+                      <span className="font-serif text-lg text-stone-900">{r.name}</span>
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-gold-800 font-semibold">{r.tag}</span>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </MotionSection>
+
         {/* PROSES */}
-        <MotionSection className="py-20 sm:py-28 lg:py-36 bg-white">
+        <MotionSection className="py-20 sm:py-28 lg:py-36">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="max-w-2xl mb-12 sm:mb-16 space-y-5">
               <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Cara Pesan</Reveal>
