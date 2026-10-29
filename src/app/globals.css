@@ -261,3 +261,29 @@ details summary::-webkit-details-marker {
     animation: none;
   }
 }
+
+/* Light sweep across the CTA button */
+.cta-shine {
+  overflow: hidden;
+}
+
+.cta-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: cta-shine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cta-shine {
+  0%, 60% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-shine::after {
+    animation: none;
+  }
+}

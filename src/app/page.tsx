@@ -3,6 +3,7 @@ import { ArrowUpRight, MapPin, Phone, Clock, AtSign, Plus } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import HeroCanvas from "@/components/HeroCanvas";
+import ThreadCanvas from "@/components/ThreadCanvas";
 import Portfolio from "@/components/Portfolio";
 import { MotionSection } from "@/components/MotionSection";
 import { MotionCard } from "@/components/MotionCard";
@@ -204,14 +205,35 @@ export default function Home() {
         </MotionSection>
 
         {/* CTA */}
-        <section id="kontak" className="relative py-28 md:py-36 bg-stone-950 text-center overflow-hidden">
-          <div aria-hidden className="hero-glow opacity-40" />
-          <div className="relative max-w-3xl mx-auto px-4 md:px-8 space-y-10">
-            <h2 className="font-serif text-4xl md:text-6xl font-light text-white leading-tight">
-              Siap mewujudkan <span className="italic text-gold-300">busana impian</span> Anda?
+        <section id="kontak" className="relative py-32 md:py-44 bg-stone-950 text-center overflow-hidden">
+          <ThreadCanvas />
+          <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(15,14,13,0.85)_0%,rgba(15,14,13,0.35)_45%,rgba(15,14,13,0)_75%)] pointer-events-none" />
+          <div className="relative max-w-3xl mx-auto px-4 md:px-8 flex flex-col items-center">
+            <p className="flex items-center gap-4 text-xs uppercase tracking-[0.35em] text-gold-300 font-semibold">
+              <span className="h-px w-10 bg-gold-500/60" />
+              Konsultasi Gratis
+              <span className="h-px w-10 bg-gold-500/60" />
+            </p>
+            <h2 className="font-serif text-5xl md:text-7xl font-light text-white leading-[1.05] tracking-tight mt-8">
+              Mari jahit <span className="italic gold-text-gradient">cerita Anda</span>
+              <br />
+              menjadi busana.
             </h2>
-            <p className="text-stone-400 font-light">Konsultasi gratis langsung dengan atelier kami.</p>
-            <WaButton label={`Chat ${WA_DISPLAY}`} dark={false} />
+            <p className="text-stone-400 font-light text-base md:text-lg max-w-md mt-8 leading-relaxed">
+              Kirim referensi desain atau ceritakan acara Anda. Atelier kami siap membantu dari ukuran pertama hingga jahitan terakhir.
+            </p>
+            <a
+              href={waLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-shine group relative mt-12 inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-gold-300 via-gold-200 to-gold-400 pl-8 pr-2 py-2 text-stone-950 text-sm font-semibold tracking-wide shadow-[0_0_60px_-10px_rgba(214,191,123,0.6)] transition-shadow duration-500 hover:shadow-[0_0_80px_-5px_rgba(214,191,123,0.8)]"
+            >
+              Chat via WhatsApp
+              <span className="w-11 h-11 rounded-full bg-stone-950 text-gold-200 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </a>
+            <p className="mt-6 text-xs tracking-[0.2em] text-stone-500">{WA_DISPLAY} · Senin–Sabtu, 08.00–17.00</p>
           </div>
         </section>
       </main>
