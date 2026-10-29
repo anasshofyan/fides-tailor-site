@@ -14,17 +14,18 @@ export default function HeroCanvas() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 640 ? 1.5 : 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, mount.clientWidth / mount.clientHeight, 0.1, 100);
-    camera.position.set(0, 3.2, 9);
+    camera.position.set(0, 3.2, window.innerWidth < 640 ? 11 : 9);
     camera.lookAt(0, 0, 0);
 
-    const COLS = 120;
-    const ROWS = 60;
+    const isSmall = window.innerWidth < 640;
+    const COLS = isSmall ? 70 : 120;
+    const ROWS = isSmall ? 36 : 60;
     const positions = new Float32Array(COLS * ROWS * 3);
     for (let i = 0; i < COLS; i++) {
       for (let j = 0; j < ROWS; j++) {

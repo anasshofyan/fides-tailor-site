@@ -12,18 +12,19 @@ export default function ThreadCanvas() {
     if (!mount) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isSmall = window.innerWidth < 640;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isSmall ? 1.5 : 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(40, mount.clientWidth / mount.clientHeight, 0.1, 100);
-    camera.position.set(0, 0, 12);
+    camera.position.set(0, 0, isSmall ? 16 : 12);
 
-    const THREADS = 14;
-    const SEGMENTS = 220;
+    const THREADS = isSmall ? 9 : 14;
+    const SEGMENTS = isSmall ? 140 : 220;
     const WIDTH = 30;
     const palette = ["#d6bf7b", "#c9a451", "#a7833e", "#e7daaf"];
 

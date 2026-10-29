@@ -107,7 +107,8 @@ export default function RootLayout({
       "closes": "17:00"
     },
     "sameAs": [
-      "https://www.instagram.com/fidestailor"
+      "https://www.instagram.com/fidestailor",
+      "https://www.tiktok.com/@fidestailor"
     ]
   };
 

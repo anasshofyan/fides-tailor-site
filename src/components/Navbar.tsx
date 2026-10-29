@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import Logo from "@/components/Logo";
 import { NAV_LINKS } from "@/lib/nav";
 import { waLink } from "@/lib/contact";
+import SocialLinks from "@/components/SocialLinks";
 
 
 export default function Navbar() {
@@ -26,12 +27,12 @@ export default function Navbar() {
           : "bg-stone-50/60 backdrop-blur-sm border-b border-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 h-16 sm:h-20 flex items-center justify-between">
         <a href="#home" aria-label="Fides Tailor - kembali ke atas">
           <Logo />
         </a>
 
-        <nav aria-label="Navigasi utama" className="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.15em] text-stone-500 font-semibold">
+        <nav aria-label="Navigasi utama" className="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.15em] text-stone-700 font-semibold">
           {NAV_LINKS.map((link) => (
             <a key={link.id} href={`#${link.id}`} className="luxury-underline hover:text-stone-900 transition-colors">
               {link.label}
@@ -65,7 +66,7 @@ export default function Navbar() {
               key={link.id}
               href={`#${link.id}`}
               onClick={() => setIsMenuOpen(false)}
-              className="block w-full text-xs uppercase tracking-widest text-stone-600 py-3"
+              className="block w-full text-xs uppercase tracking-widest text-stone-800 py-3"
             >
               {link.label}
             </a>
@@ -78,6 +79,7 @@ export default function Navbar() {
           >
             Chat WhatsApp
           </a>
+          <SocialLinks variant="light" className="pt-4 justify-center" />
         </nav>
       )}
     </header>

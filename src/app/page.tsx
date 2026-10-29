@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, MapPin, Phone, Clock, AtSign, Plus } from "lucide-react";
+import { ArrowUpRight, MapPin, Phone, Clock, Plus } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import HeroCanvas from "@/components/HeroCanvas";
@@ -7,6 +7,10 @@ import ThreadCanvas from "@/components/ThreadCanvas";
 import Portfolio from "@/components/Portfolio";
 import { MotionSection } from "@/components/MotionSection";
 import { MotionCard } from "@/components/MotionCard";
+import { Reveal, RevealImage } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
+import ScrollProgress from "@/components/ScrollProgress";
+import SocialLinks from "@/components/SocialLinks";
 import { NAV_LINKS } from "@/lib/nav";
 import { WA_DISPLAY, waLink } from "@/lib/contact";
 
@@ -76,6 +80,7 @@ export default function Home() {
   return (
     <div className="flex-1 flex flex-col font-sans bg-stone-50">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <ScrollProgress />
       <Navbar />
 
       <main className="flex-1">
@@ -83,27 +88,31 @@ export default function Home() {
         <section id="home" className="relative min-h-[calc(100svh-80px)] flex items-center overflow-hidden">
           <HeroCanvas />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-stone-50/40 via-transparent to-stone-50 pointer-events-none" />
-          <div className="relative max-w-4xl mx-auto px-4 md:px-8 py-24 text-center animate-slide-up">
-            <p className="text-xs uppercase tracking-[0.35em] text-gold-700 font-semibold">Penjahit Bespoke · Lamongan · Sejak 1996</p>
-            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light text-stone-900 leading-[1.05] tracking-tight mt-8">
+          <div className="relative max-w-4xl mx-auto px-5 sm:px-8 py-20 sm:py-24 text-center">
+            <p className="hero-in text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] text-gold-800 font-semibold">Penjahit Bespoke · Lamongan · Sejak 1996</p>
+            <h1 className="hero-in [animation-delay:120ms] mt-6 sm:mt-8 font-serif text-[2.6rem] leading-[1.08] sm:text-6xl md:text-7xl lg:text-8xl font-light text-stone-900 tracking-tight">
               Busana yang dijahit <span className="italic gold-text-gradient">khusus untuk Anda.</span>
             </h1>
-            <p className="text-stone-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light mt-8">
+            <p className="hero-in [animation-delay:260ms] mt-6 sm:mt-8 text-stone-700 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
               Gaun, kebaya, jas, dan payet handmade — dikerjakan dengan teliti oleh atelier Fides Tailor di Lamongan.
             </p>
-            <div className="mt-12 flex flex-wrap justify-center items-center gap-8">
+            <div className="hero-in [animation-delay:400ms] mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8">
               <WaButton />
-              <a href="#portofolio" className="text-xs uppercase tracking-[0.2em] font-semibold text-stone-700 luxury-underline">
+              <a href="#portofolio" className="text-xs uppercase tracking-[0.2em] font-semibold text-stone-900 luxury-underline">
                 Lihat Karya
               </a>
             </div>
           </div>
+          <a href="#tentang" aria-label="Gulir ke bawah" className="hero-in [animation-delay:700ms] absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-stone-600">
+            Scroll
+            <span className="scroll-cue block w-px h-10 bg-stone-400" />
+          </a>
         </section>
 
         {/* TENTANG */}
-        <MotionSection id="tentang" className="py-28 md:py-36">
-          <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+        <MotionSection id="tentang" className="py-20 sm:py-28 lg:py-36">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
+            <RevealImage className="relative aspect-[4/5] overflow-hidden bg-stone-100">
               <Image
                 src="/images/payet.png"
                 alt="Detail sulam payet handmade Fides Tailor Lamongan"
@@ -111,24 +120,24 @@ export default function Home() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-[1.5s] hover:scale-105"
               />
-            </div>
+            </RevealImage>
             <div className="space-y-8">
-              <p className="text-xs uppercase tracking-[0.35em] text-gold-700 font-semibold">Tentang Kami</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-900 leading-tight">
+              <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Tentang Kami</Reveal>
+              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">
                 Tiga dekade menjahit dengan <span className="italic">ketelitian.</span>
-              </h2>
-              <p className="text-stone-600 text-base md:text-lg leading-relaxed font-light">
+              </Reveal>
+              <p className="text-stone-700 text-base md:text-lg leading-relaxed">
                 <strong className="font-medium text-stone-900">Fides Tailor</strong> adalah atelier jahit di Lamongan yang berdiri sejak 1996. Setiap busana dibuat dari pola personal, dijahit dengan tangan terampil, dan disesuaikan hingga benar-benar pas.
               </p>
               <dl className="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200">
-                {[
-                  ["30", "Tahun"],
-                  ["10k+", "Busana"],
-                  ["100%", "Handmade"],
-                ].map(([value, label]) => (
+                {([
+                  [30, "", "Tahun"],
+                  [10, "k+", "Busana"],
+                  [100, "%", "Handmade"],
+                ] as const).map(([num, suffix, label]) => (
                   <div key={label} className="flex flex-col-reverse">
-                    <dt className="text-xs uppercase tracking-wider text-stone-400 mt-1">{label}</dt>
-                    <dd className="font-serif text-4xl font-light text-stone-900">{value}</dd>
+                    <dt className="text-xs uppercase tracking-wider text-stone-600 mt-1">{label}</dt>
+                    <dd className="font-serif text-3xl sm:text-4xl font-light text-stone-900"><CountUp to={num} suffix={suffix} /></dd>
                   </div>
                 ))}
               </dl>
@@ -137,19 +146,20 @@ export default function Home() {
         </MotionSection>
 
         {/* LAYANAN */}
-        <MotionSection id="layanan" className="py-28 md:py-36 bg-white">
+        <MotionSection id="layanan" className="py-20 sm:py-28 lg:py-36 bg-white">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <div className="max-w-2xl mb-16 space-y-6">
-              <p className="text-xs uppercase tracking-[0.35em] text-gold-700 font-semibold">Layanan</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-900 leading-tight">Jasa jahit bespoke di Lamongan</h2>
+            <div className="max-w-2xl mb-12 sm:mb-16 space-y-5">
+              <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Layanan</Reveal>
+              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">Jasa jahit bespoke di Lamongan</Reveal>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-200 border border-stone-200">
               {SERVICES.map((srv, index) => (
-                <MotionCard key={srv.num} index={index} className="bg-white p-10 md:p-12 group">
-                  <article className="space-y-4">
-                    <span className="font-serif text-sm text-gold-600">{srv.num}</span>
+                <MotionCard key={srv.num} index={index} className="bg-white p-7 sm:p-10 lg:p-12 group h-full">
+                  <article className="relative space-y-4">
+                    <span aria-hidden className="absolute -top-7 sm:-top-10 lg:-top-12 left-0 h-0.5 w-0 bg-gold-500 transition-all duration-700 group-hover:w-16" />
+                    <span className="font-serif text-sm font-medium text-gold-700">{srv.num}</span>
                     <h3 className="font-serif text-2xl md:text-3xl font-light text-stone-900">{srv.title}</h3>
-                    <p className="text-stone-500 leading-relaxed font-light">{srv.desc}</p>
+                    <p className="text-stone-600 leading-relaxed">{srv.desc}</p>
                   </article>
                 </MotionCard>
               ))}
@@ -158,46 +168,47 @@ export default function Home() {
         </MotionSection>
 
         {/* PORTOFOLIO */}
-        <MotionSection id="portofolio" className="py-28 md:py-36">
+        <MotionSection id="portofolio" className="py-20 sm:py-28 lg:py-36">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <Portfolio />
           </div>
         </MotionSection>
 
         {/* PROSES */}
-        <MotionSection className="py-28 md:py-36 bg-white">
+        <MotionSection className="py-20 sm:py-28 lg:py-36 bg-white">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <div className="max-w-2xl mb-16 space-y-6">
-              <p className="text-xs uppercase tracking-[0.35em] text-gold-700 font-semibold">Cara Pesan</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-900 leading-tight">Mudah, cukup mulai dari chat.</h2>
+            <div className="max-w-2xl mb-12 sm:mb-16 space-y-5">
+              <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">Cara Pesan</Reveal>
+              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900 leading-tight">Mudah, cukup mulai dari chat.</Reveal>
             </div>
-            <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-              {PROCESS.map((p) => (
-                <li key={p.step} className="border-t border-stone-300 pt-6">
-                  <span className="font-serif text-sm text-gold-600">{p.step}</span>
+            <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+              {PROCESS.map((p, i) => (
+                <Reveal as="li" key={p.step} delay={i * 0.12} className="relative border-t border-stone-300 pt-6 group">
+                  <span aria-hidden className="absolute -top-px left-0 h-px w-0 bg-gold-600 transition-all duration-700 group-hover:w-full" />
+                  <span className="font-serif text-sm font-medium text-gold-700">{p.step}</span>
                   <h3 className="font-serif text-2xl text-stone-900 mt-3">{p.title}</h3>
-                  <p className="text-sm text-stone-500 mt-2 leading-relaxed font-light">{p.desc}</p>
-                </li>
+                  <p className="text-sm text-stone-600 mt-2 leading-relaxed">{p.desc}</p>
+                </Reveal>
               ))}
             </ol>
           </div>
         </MotionSection>
 
         {/* FAQ */}
-        <MotionSection id="faq" className="py-28 md:py-36">
+        <MotionSection id="faq" className="py-20 sm:py-28 lg:py-36">
           <div className="max-w-3xl mx-auto px-4 md:px-8">
             <div className="text-center mb-14 space-y-6">
-              <p className="text-xs uppercase tracking-[0.35em] text-gold-700 font-semibold">FAQ</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-900">Pertanyaan umum</h2>
+              <Reveal as="p" className="text-xs uppercase tracking-[0.35em] text-gold-800 font-semibold">FAQ</Reveal>
+              <Reveal as="h2" delay={0.1} className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-900">Pertanyaan umum</Reveal>
             </div>
             <div className="divide-y divide-stone-200 border-y border-stone-200">
               {FAQS.map((f) => (
                 <details key={f.q} className="group py-6">
-                  <summary className="flex items-center justify-between gap-6 cursor-pointer list-none font-serif text-xl md:text-2xl text-stone-900">
+                  <summary className="flex items-center justify-between gap-6 cursor-pointer list-none font-serif text-lg sm:text-xl md:text-2xl text-stone-900">
                     {f.q}
                     <Plus className="w-5 h-5 shrink-0 text-gold-600 transition-transform duration-300 group-open:rotate-45" />
                   </summary>
-                  <p className="mt-4 text-stone-600 font-light leading-relaxed">{f.a}</p>
+                  <p className="mt-4 text-stone-700 leading-relaxed">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -205,7 +216,7 @@ export default function Home() {
         </MotionSection>
 
         {/* CTA */}
-        <section id="kontak" className="relative py-32 md:py-44 bg-stone-950 text-center overflow-hidden">
+        <section id="kontak" className="relative py-24 sm:py-32 lg:py-44 bg-stone-950 text-center overflow-hidden">
           <ThreadCanvas />
           <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(15,14,13,0.85)_0%,rgba(15,14,13,0.35)_45%,rgba(15,14,13,0)_75%)] pointer-events-none" />
           <div className="relative max-w-3xl mx-auto px-4 md:px-8 flex flex-col items-center">
@@ -214,14 +225,14 @@ export default function Home() {
               Konsultasi Gratis
               <span className="h-px w-10 bg-gold-500/60" />
             </p>
-            <h2 className="font-serif text-5xl md:text-7xl font-light text-white leading-[1.05] tracking-tight mt-8">
-              Mari jahit <span className="italic gold-text-gradient">cerita Anda</span>
+            <Reveal as="h2" delay={0.1} className="mt-8 font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[1.08] tracking-tight">
+              Mari jahit <span className="italic gold-text-gradient-light">cerita Anda</span>
               <br />
               menjadi busana.
-            </h2>
-            <p className="text-stone-400 font-light text-base md:text-lg max-w-md mt-8 leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delay={0.2} className="mt-8 text-stone-300 text-base md:text-lg max-w-md leading-relaxed">
               Kirim referensi desain atau ceritakan acara Anda. Atelier kami siap membantu dari ukuran pertama hingga jahitan terakhir.
-            </p>
+            </Reveal>
             <a
               href={waLink()}
               target="_blank"
@@ -233,16 +244,21 @@ export default function Home() {
                 <ArrowUpRight className="w-4 h-4" />
               </span>
             </a>
-            <p className="mt-6 text-xs tracking-[0.2em] text-stone-500">{WA_DISPLAY} · Senin–Sabtu, 08.00–17.00</p>
+            <p className="mt-6 text-xs tracking-[0.15em] text-stone-400">{WA_DISPLAY} · Senin–Sabtu, 08.00–17.00</p>
+            <div className="mt-10 flex flex-col items-center gap-4">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400">Lihat karya terbaru kami</p>
+              <SocialLinks />
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="bg-stone-950 text-stone-400 border-t border-stone-800 py-16">
+      <footer className="bg-stone-950 text-stone-300 border-t border-stone-800 py-14 md:py-16">
         <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-5 space-y-4">
             <p className="font-serif text-2xl text-white tracking-[0.3em] uppercase">Fides</p>
-            <p className="font-light leading-relaxed max-w-sm text-sm">Atelier jahit bespoke di Lamongan sejak 1996.</p>
+            <p className="leading-relaxed max-w-sm text-sm text-stone-400">Atelier jahit bespoke di Lamongan sejak 1996.</p>
+            <SocialLinks className="pt-2" />
           </div>
           <nav aria-label="Navigasi footer" className="md:col-span-3">
             <ul className="space-y-3 text-sm">
@@ -254,13 +270,12 @@ export default function Home() {
             </ul>
           </nav>
           <address className="md:col-span-4 not-italic space-y-3 text-sm">
-            <p className="flex gap-3"><MapPin className="w-4 h-4 shrink-0 mt-0.5 text-gold-500" /><a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">Jl. Pahlawan RT 01/RW 07 No. 3, Kalianyar, Lamongan</a></p>
-            <p className="flex gap-3"><Phone className="w-4 h-4 shrink-0 mt-0.5 text-gold-500" /><a href={waLink()} target="_blank" rel="noopener noreferrer" className="hover:text-white">{WA_DISPLAY}</a></p>
-            <p className="flex gap-3"><Clock className="w-4 h-4 shrink-0 mt-0.5 text-gold-500" />Senin–Sabtu, 08.00–17.00 WIB</p>
-            <p className="flex gap-3"><AtSign className="w-4 h-4 shrink-0 mt-0.5 text-gold-500" /><a href="https://www.instagram.com/fidestailor" target="_blank" rel="noopener noreferrer" className="hover:text-white">@fidestailor</a></p>
+            <p className="flex gap-3"><MapPin className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">Jl. Pahlawan RT 01/RW 07 No. 3, Kalianyar, Lamongan</a></p>
+            <p className="flex gap-3"><Phone className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" /><a href={waLink()} target="_blank" rel="noopener noreferrer" className="hover:text-white">{WA_DISPLAY}</a></p>
+            <p className="flex gap-3"><Clock className="w-4 h-4 shrink-0 mt-0.5 text-gold-400" />Senin–Sabtu, 08.00–17.00 WIB</p>
           </address>
         </div>
-        <p className="mt-14 text-xs text-stone-600 text-center">© {new Date().getFullYear()} Fides Tailor</p>
+        <p className="mt-14 text-xs text-stone-500 text-center">© {new Date().getFullYear()} Fides Tailor</p>
       </footer>
     </div>
   );
